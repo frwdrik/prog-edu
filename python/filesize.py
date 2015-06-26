@@ -10,7 +10,6 @@ def approximate_size(size, a_kilobyte_is_1024_bytes=True):
                                 if False, use multiples of 1000
 
     Returns: stringr
-
     '''
     if size < 0:
         raise ValueError('number must be non-negative')
