@@ -1,0 +1,57 @@
+(defun funk (bla)
+  (function (lambda (b)
+    (+ b b))))
+
+(defun adder (n)
+  #'(lambda (x) (+ x n)))
+
+(funcall (adder 3) 4)
+
+(defun adder (n)
+  #'(lambda (x) (+ x n)))
+
+(funcall (adder 39) 4)
+((lambda (n) (funcall n 2 2)) 'eq)
+
+(defun funk (op)
+  #'(lambda (x)
+      (funcall op x x)))
+(funcall (funk #'+) 8)
+
+(defun rember-f (test?)
+  (lambda (a l)
+    (cond
+      ((null l) (quote l))
+      ((funcall test? a (car l)) (cdr l))
+      (t (cons (car l)
+	       (funcall
+		(funcall rember-f test?) a (cdr l))))
+	       )))
+(defun eq?-salad (n)
+  (eq n salad))
+
+(funcall (funcall #'rember-f #'eq) 'u '(1 u u) )
+(funcall eq?-salad 42)
+(defun dobbel (n)
+  (+ n n))
+(funcall 'dobbel 2)
+(setq dobbel (lambda (n) (print n)))
+(funcall dobbel 2)
+
+
+
+(defvar dobbel (lambda (n) (+ n n)))
+(defvar t1 'hei)
+(symbol-function 't1)
+(defun hei ()
+  (print hei))
+(symbol-value 't2)
+(symbol- 'hei)
+
+(funcall t1)
+(setf foo 42)
+(defun foo (fn seq)
+  (mapcar fn seq))
+(foo 't1 '(4 9))
+(defvar t1 (lambda (n) (sqrt n)))
+(mapcar (lambda (n) (sqrt n)) 42))

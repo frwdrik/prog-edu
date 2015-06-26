@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>stack.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.3.3' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/stack.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L5'>[^]</a><a href='#L46'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L5' title='Defined at 5.'>push</a></li>
+<li><a href='#L13' title='Defined at 13.'>pop</a></li>
+<li><a href='#L23' title='Defined at 23.'>make_empty</a></li>
+<li><a href='#L28' title='Defined at 28.'>is_empty</a></li>
+<li><a href='#L33' title='Defined at 33.'>is_full</a></li>
+<li><a href='#L39' title='Defined at 39.'>stack_overflow</a></li>
+<li><a href='#L46' title='Defined at 46.'>stack_underflow</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L2' name='L2'></a><em class='sharp'>#include</em> "<a href='1.html'>stack.h</a>"
+<a id='L3' name='L3'></a><em class='sharp'>#include</em> "<a href='3.html'>6.h</a>"
+<a id='L4' name='L4'></a>
+<a id='L5' name='L5'></a><strong class='reserved'>void</strong> <a href='../R/11.html' title='Multiple referred from 3 places.'>push</a>(<strong class='reserved'>int</strong> x)
+<a id='L6' name='L6'></a><em class='brace'>{</em>
+<a id='L7' name='L7'></a>    <strong class='reserved'>if</strong> (<a href='../S/5.html#L33' title='Defined at 33 in stack.c.'>is_full</a>())
+<a id='L8' name='L8'></a>        <a href='../S/5.html#L39' title='Defined at 39 in stack.c.'>stack_overflow</a>();
+<a id='L9' name='L9'></a>    <strong class='reserved'>else</strong>
+<a id='L10' name='L10'></a>        contents[top++] = x;
+<a id='L11' name='L11'></a><em class='brace'>}</em>
+<a id='L12' name='L12'></a>    
+<a id='L13' name='L13'></a><strong class='reserved'>int</strong> <a href='../R/10.html' title='Multiple referred from 4 places.'>pop</a>(<strong class='reserved'>void</strong>)
+<a id='L14' name='L14'></a><em class='brace'>{</em>
+<a id='L15' name='L15'></a>    <strong class='reserved'>if</strong> (<a href='../S/5.html#L28' title='Defined at 28 in stack.c.'>is_empty</a>()) <em class='brace'>{</em>
+<a id='L16' name='L16'></a>        <a href='../S/5.html#L46' title='Defined at 46 in stack.c.'>stack_underflow</a>();
+<a id='L17' name='L17'></a>        exit(0);
+<a id='L18' name='L18'></a>    <em class='brace'>}</em> <strong class='reserved'>else</strong>
+<a id='L19' name='L19'></a>        <strong class='reserved'>return</strong> contents[--top];
+<a id='L20' name='L20'></a><em class='brace'>}</em>
+<a id='L21' name='L21'></a>
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><strong class='reserved'>void</strong> <a href='../R/9.html' title='Multiple referred from 2 places.'>make_empty</a>(<strong class='reserved'>void</strong>)
+<a id='L24' name='L24'></a><em class='brace'>{</em>
+<a id='L25' name='L25'></a>    top = 0;
+<a id='L26' name='L26'></a><em class='brace'>}</em>
+<a id='L27' name='L27'></a>
+<a id='L28' name='L28'></a>bool <a href='../R/7.html' title='Multiple referred from 2 places.'>is_empty</a>(<strong class='reserved'>void</strong>)
+<a id='L29' name='L29'></a><em class='brace'>{</em>
+<a id='L30' name='L30'></a>    <strong class='reserved'>return</strong> top == 0;
+<a id='L31' name='L31'></a><em class='brace'>}</em>
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a>bool <a href='../R/8.html' title='Multiple referred from 2 places.'>is_full</a>(<strong class='reserved'>void</strong>)
+<a id='L34' name='L34'></a><em class='brace'>{</em>
+<a id='L35' name='L35'></a>    <strong class='reserved'>return</strong> top == <a href='../S/3.html#L4' title='Defined at 4 in 6.h.'>STACK_SIZE</a>;
+<a id='L36' name='L36'></a><em class='brace'>}</em>
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a>
+<a id='L39' name='L39'></a><strong class='reserved'>void</strong> <a href='../R/12.html' title='Multiple referred from 2 places.'>stack_overflow</a>(<strong class='reserved'>void</strong>)
+<a id='L40' name='L40'></a><em class='brace'>{</em>
+<a id='L41' name='L41'></a>    printf("Expression is too complex\n");
+<a id='L42' name='L42'></a>
+<a id='L43' name='L43'></a>    exit(0);
+<a id='L44' name='L44'></a><em class='brace'>}</em>
+<a id='L45' name='L45'></a>
+<a id='L46' name='L46'></a><strong class='reserved'>void</strong> <a href='../R/13.html' title='Multiple referred from 2 places.'>stack_underflow</a>(<strong class='reserved'>void</strong>)
+<a id='L47' name='L47'></a><em class='brace'>{</em>
+<a id='L48' name='L48'></a>    printf("Not enough operands\n");
+<a id='L49' name='L49'></a>
+<a id='L50' name='L50'></a>    exit(1);
+<a id='L51' name='L51'></a><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L5'>[^]</a><a href='#L46'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>
